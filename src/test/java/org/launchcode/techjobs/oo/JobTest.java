@@ -1,7 +1,7 @@
 package org.launchcode.techjobs.oo;
 import org.junit.Test;
 
-import javax.sound.midi.SysexMessage;
+//import javax.sound.midi.SysexMessage;
 
 import static org.junit.Assert.*;
 
@@ -54,4 +54,71 @@ public class JobTest {
 
        assertNotEquals(testFields1, testFields2);
    }
+
+   // TEST TO STRING : task 5
+    // 1
+   @Test
+   public void testToStringStartsAndEndsWithNewLine() {
+       Job testJob = new Job("Product tester",
+               new Employer("ACME"),
+               new Location("Desert"),
+               new PositionType("Quality control"),
+               new CoreCompetency("Persistence"));
+
+
+//        String newline = System.lineSeparator();
+       String newline = "\n";
+       assertEquals(newline + "ID: " + testJob.getId() + newline +
+                       "Name: " + testJob.getName() + newline +
+                       "Employer: " + testJob.getEmployer() + newline +
+                       "Location: " + testJob.getLocation() + newline +
+                       "Position Type: " + testJob.getPositionType() + newline +
+                       "Core Competency: " + testJob.getCoreCompetency() + newline
+               , testJob.toString());
+   }
+
+   // 2
+   @Test
+   public void testToStringContainsCorrectLabelsAndData() {
+       Job testJob = new Job("Product tester",
+               new Employer("ACME"),
+               new Location("Desert"),
+               new PositionType("Quality control"),
+               new CoreCompetency("Persistence"));
+
+//        String newline = System.lineSeparator();
+       String newline = "\n";
+       assertEquals(newline + "ID: " + testJob.getId() + newline +
+                       "Name: Product tester" + newline +
+                       "Employer: ACME" + newline +
+                       "Location: Desert" + newline +
+                       "Position Type: Quality control" + newline +
+                       "Core Competency: Persistence" + newline
+               , testJob.toString());
+
+   }
+   // 3
+   @Test
+   public void testToStringHandlesEmptyField() {
+       Job emptyJob = new Job("Product tester",
+               new Employer("ACME"),
+               new Location(),
+               new PositionType("Quality control"),
+               new CoreCompetency("Persistence"));
+
+
+//        String newline = System.lineSeparator();
+       String newline = "\n";
+
+       assertEquals(newline + "ID: " + emptyJob.getId() + newline +
+                       "Name: Product tester" + newline +
+                       "Employer: ACME" + newline +
+                       "Location: Data not available" + newline +
+                       "Position Type: Quality control" + newline +
+                       "Core Competency: Persistence" + newline
+               , emptyJob.toString());
+
+       System.out.println(emptyJob);
+   }
+
 }
