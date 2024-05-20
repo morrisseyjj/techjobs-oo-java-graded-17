@@ -1,7 +1,8 @@
 package org.launchcode.techjobs.oo;
+import org.junit.Assert;
 import org.junit.Test;
+import static java.lang.System.lineSeparator;
 
-//import javax.sound.midi.SysexMessage;
 
 import static org.junit.Assert.*;
 
@@ -29,6 +30,7 @@ public class JobTest {
         assertEquals("Desert", testFields.getLocation().getValue());
         assertEquals("Quality control", testFields.getPositionType().getValue());
         assertEquals("Persistence", testFields.getCoreCompetency().getValue());
+
         assertTrue(testFields instanceof Job);
         assertTrue(testFields.getEmployer() instanceof Employer);
         assertTrue(testFields.getLocation() instanceof Location);
@@ -100,25 +102,14 @@ public class JobTest {
    // 3
    @Test
    public void testToStringHandlesEmptyField() {
-       Job emptyJob = new Job("Product tester",
-               new Employer("ACME"),
-               new Location(),
-               new PositionType("Quality control"),
-               new CoreCompetency("Persistence"));
-
-
-//        String newline = System.lineSeparator();
-       String newline = "\n";
-
-       assertEquals(newline + "ID: " + emptyJob.getId() + newline +
-                       "Name: Product tester" + newline +
-                       "Employer: ACME" + newline +
-                       "Location: Data not available" + newline +
-                       "Position Type: Quality control" + newline +
-                       "Core Competency: Persistence" + newline
-               , emptyJob.toString());
-
-       System.out.println(emptyJob);
+       Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+       String jobString = "ID: " + job.getId() + "\n" +
+               "Name: Data not available\n" +
+               "Employer: Data not available\n" +
+               "Location: Data not available\n" +
+               "Position Type: Data not available\n" +
+               "Core Competency: Data not available";
+       Assert.assertEquals(jobString, job.toString().trim());
    }
 
 }
